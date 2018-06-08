@@ -1,4 +1,4 @@
-package hibernate.lesson4.lecture;
+package hibernate.lesson5.lecture;
 
 
 import org.hibernate.SessionFactory;
