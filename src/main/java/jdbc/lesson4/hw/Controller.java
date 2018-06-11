@@ -32,10 +32,13 @@ public class Controller {
         try (Connection connection = GenericDAO.getConnection()) {
             try {
                 connection.setAutoCommit(false);
-                for (Long id : ids) {
+                for (Long id : ids){
                     Validator.validateExistenceAtStorage(storageFrom, id);
                     File file = fileDAO.findById(id);
                     Validator.validate(storageTo, file);
+                }
+                for (Long id : ids) {
+                    File file = fileDAO.findById(id);
                     file.setStorageID(storageTo.getId());
                     fileDAO.update(connection, file);
                 }
