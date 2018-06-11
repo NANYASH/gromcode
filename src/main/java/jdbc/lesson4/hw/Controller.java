@@ -12,6 +12,7 @@ public class Controller {
 
     public File put(Storage storage, File file) throws BadRequestException, SQLException {
         Validator.validateExistence(file.getId());
+        Validator.validate(storage,file);
         file.setStorageID(storage.getId());
         try (Connection connection = GenericDAO.getConnection()) {
             fileDAO.update(connection, file);
@@ -62,7 +63,7 @@ public class Controller {
                 connection.commit();
             } catch (SQLException e) {
                 connection.rollback();
-                throw new SQLException();
+                e.printStackTrace();
             }
         }
     }
