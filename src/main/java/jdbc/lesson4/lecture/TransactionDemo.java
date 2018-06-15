@@ -10,11 +10,12 @@ import java.util.List;
 
 public class TransactionDemo {
 
-    private static final String DB_URL = "jdbc:oracle:thin:@gromcode-lesson.cjqbbseqr63c.eu-central-1.rds.amazonaws.com:1521:ORCL";
+    private static final String DB_URL = "jdbc:oracle:thin:@gromcode-lessons.cnrx1jkycv8d.us-east-2.rds.amazonaws.com:1521:ORCL";
     private static final String USER = "main";
-    private static final String PASS = "ifgjrkzr";
+    private static final String PASS = "asol1998";
+    private static final String CREATE_PRODUCT = "INSERT INTO PRODUCT VALUES(?, ?, ?, ?)";
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws SQLException {
         Product product1 = new Product(55, "!!!", "!!!", 777);
         Product product2 = new Product(66, "!!!", "!!!", 777);
         Product product3 = new Product(66, "!!!", "!!!", 777);
@@ -24,41 +25,34 @@ public class TransactionDemo {
         products.add(product2);
         products.add(product3);
 
-        save(products);
+        saveList(products);
     }
 
-    public static void save(List<Product> products) {
-        try (Connection connection = getConnection()) {
 
-            saveList(products, connection);
+    private static void saveList(List<Product> products) throws SQLException {
+        try(Connection connection = getConnection()) {
+            try (PreparedStatement preparedStatement = connection.prepareStatement(CREATE_PRODUCT)) {
 
-        } catch (SQLException e) {
-            System.err.println("Something went wrong");
-            e.printStackTrace();
-        }
-    }
+                connection.setAutoCommit(false);
 
-    private static void saveList(List<Product> products, Connection connection) throws SQLException {
-        try (PreparedStatement preparedStatement = connection.prepareStatement("INSERT INTO PRODUCT VALUES(?, ?, ?, ?)")) {
+                for (Product product : products) {
+                    preparedStatement.setLong(1, product.getId());
+                    preparedStatement.setString(2, product.getName());
+                    preparedStatement.setString(3, product.getDescription());
+                    preparedStatement.setInt(4, product.getPrice());
 
-            connection.setAutoCommit(false);
+                    int res = preparedStatement.executeUpdate();
 
-            for (Product product : products) {
-                preparedStatement.setLong(1, product.getId());
-                preparedStatement.setString(2, product.getName());
-                preparedStatement.setString(3, product.getDescription());
-                preparedStatement.setInt(4, product.getPrice());
+                    System.out.println("save was finished with result " + res);
+                }
+                
+                connection.commit();
 
-                int res = preparedStatement.executeUpdate();
-
-                System.out.println("save was finished with result " + res);
+            } catch (SQLException e) {
+                connection.rollback();
+                System.err.println("Something went wrong");
+                throw e;
             }
-
-            connection.commit();
-
-        } catch (SQLException e) {
-            connection.rollback();
-            throw e;
         }
     }
 
