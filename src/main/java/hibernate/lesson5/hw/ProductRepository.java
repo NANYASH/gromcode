@@ -26,8 +26,6 @@ public class ProductRepository {
             session.getTransaction().begin();
             session.delete(session.get(Product.class, id));
             session.getTransaction().commit();
-        }catch (IllegalArgumentException e){
-            System.err.print("Delete cannot be performed");
         }
     }
 
