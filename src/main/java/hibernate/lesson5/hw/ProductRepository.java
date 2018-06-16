@@ -24,7 +24,7 @@ public class ProductRepository {
             session.update(product);
             session.getTransaction().commit();
         }catch (StaleObjectStateException e){
-            System.err.print("Entry with id: "+product.getId()+" cannot be found");
+            System.err.print("Entry with id: "+product.getId()+" cannot be update");
         }
     }
 
@@ -34,7 +34,7 @@ public class ProductRepository {
             session.delete(session.get(Product.class, id));
             session.getTransaction().commit();
         }catch (IllegalArgumentException e){
-            System.err.print("Entry with id: "+id+" cannot be found");
+            System.err.print("Entry with id: "+id+" cannot be delete");
         }
     }
 
