@@ -13,8 +13,8 @@ public class Demo {
         product.setDescription("pink");
         ProductRepository productRepository = new ProductRepository();
         //productRepository.save(product);
-        //productRepository.update(product);
-        productRepository.detele(product.getId());
+        productRepository.update(product);
+        //productRepository.detele(product.getId());
 
 
 
