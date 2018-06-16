@@ -3,10 +3,8 @@ package hibernate.lesson5.hw;
 
 import org.hibernate.Session;
 import org.hibernate.StaleObjectStateException;
-import org.hibernate.exception.ConstraintViolationException;
-
 import javax.persistence.PersistenceException;
-import java.sql.SQLIntegrityConstraintViolationException;
+
 
 
 public class ProductRepository {
