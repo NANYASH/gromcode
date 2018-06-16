@@ -45,7 +45,7 @@ public class TransactionDemo {
 
                     System.out.println("save was finished with result " + res);
                 }
-                
+
                 connection.commit();
 
             } catch (SQLException e) {

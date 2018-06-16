@@ -1,6 +1,5 @@
 package hibernate.lesson5.lecture;
 
-import hibernate.lesson5.hw.HibernateUtils;
 import org.hibernate.Session;
 
 public class Demo {
