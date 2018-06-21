@@ -4,7 +4,6 @@ package hibernate.lesson2;
 import java.util.Arrays;
 import java.util.List;
 
-import static hibernate.lesson2.ProductDAO.*;
 
 public class Demo {
 
@@ -37,7 +36,7 @@ public class Demo {
 
         List<Product> products = Arrays.asList(product1, product2, product3);
 
-        updateAll(products);
+        ProductDAO.updateAll(products);
         //update(product);
         //updateAll(products);
         //save(product);
