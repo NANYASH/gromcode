@@ -1,8 +1,5 @@
-package hibernate.lesson5.hw;
+package hibernate.lesson1.hw;
 
-
-import hibernate.lesson5.lecture.HibernateUtils;
-import org.hibernate.Session;
 
 public class Demo {
 

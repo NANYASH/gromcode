@@ -1,4 +1,4 @@
-package hibernate.lesson5.hw;
+package hibernate.lesson1.hw;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
