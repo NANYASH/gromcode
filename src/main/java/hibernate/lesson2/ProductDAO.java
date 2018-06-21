@@ -1,7 +1,6 @@
 package hibernate.lesson2;
 
 
-import hibernate.lesson1.hw.Product;
 import org.hibernate.SessionFactory;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
@@ -13,32 +12,31 @@ public class ProductDAO {
 
     private static SessionFactory sessionFactory;
 
-    public static void main(String[] args) {
-        Product product = new Product();
-        product.setName("Plate");
-        product.setDescription("red color");
-        product.setPrice(100);
+    public static void save(Product product){
+        //create session/tr
+        Session session = null;
+        Transaction tr = null;
+        try {
+            session = createSessionFactory().openSession();
+            tr = session.getTransaction();
+            tr.begin();
 
-        save(product);
+            //action
+            session.save(product);
 
-        Product product1 = new Product();
-        product1.setName("table new111!");
-        product1.setDescription("grey & blue");
-        product1.setPrice(70);
-
-        Product product2 = new Product();
-        product2.setName("table new222!");
-        product2.setDescription("grey & blue");
-        product2.setPrice(80);
-
-        Product product3 = new Product();
-        product3.setName("table new333!");
-        product3.setDescription("grey & blue");
-        product3.setPrice(90);
-
-        //List<Product> products = Arrays.asList(product1, product2, product3);
-
-        //saveProducts(products);
+            //close session/tr
+            tr.commit();
+        }catch (HibernateException e){
+            System.err.println("Save is failed");
+            System.err.println(e.getMessage());
+            if (tr != null)
+                tr.rollback();
+        }finally {
+            if (session != null){
+                session.close();
+            }
+        }
+        System.out.println("Save is done");
     }
 
     public static void saveProducts(List<Product> products){
@@ -70,32 +68,6 @@ public class ProductDAO {
         System.out.println("Save is done");
     }
 
-    public static void save(Product product){
-        //create session/tr
-        Session session = null;
-        Transaction tr = null;
-        try {
-            session = createSessionFactory().openSession();
-            tr = session.getTransaction();
-            tr.begin();
-
-            //action
-            session.save(product);
-
-            //close session/tr
-            tr.commit();
-        }catch (HibernateException e){
-            System.err.println("Save is failed");
-            System.err.println(e.getMessage());
-            if (tr != null)
-                tr.rollback();
-        }finally {
-            if (session != null){
-                session.close();
-            }
-        }
-        System.out.println("Save is done");
-    }
 
     public static SessionFactory createSessionFactory(){
         //singleton pattern
