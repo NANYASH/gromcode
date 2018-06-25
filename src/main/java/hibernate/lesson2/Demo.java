@@ -9,12 +9,18 @@ public class Demo {
 
     public static void main(String[] args) {
         Product product = new Product();
-        product.setId(11);
-        product.setName("NEW TEST");
+        product.setId(7);
+        product.setName("TEST");
         product.setDescription("black color");
         product.setPrice(200);
 
         //save(product);
+        ProductDAO.update(product);
+
+
+
+
+
 
         Product product1 = new Product();
         product.setId(12);
@@ -36,10 +42,12 @@ public class Demo {
 
         List<Product> products = Arrays.asList(product1, product2, product3);
 
-        ProductDAO.updateAll(products);
-        //update(product);
+        //ProductDAO.updateAll(products);
+        //ProductDAO.deleteAll(products);
+        ProductDAO.update(product);
         //updateAll(products);
-        //save(product);
-        //saveAll(products);
+        //ProductDAO.save(product);
+        //ProductDAO.saveAll(products);
+        //ProductDAO.delete(product);
     }
 }
