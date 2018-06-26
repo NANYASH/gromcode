@@ -1,14 +1,12 @@
 package hibernate.lesson2;
 
 
-import hibernate.lesson1.hw.HibernateUtils;
 import org.hibernate.SessionFactory;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.hibernate.cfg.Configuration;
 
-import javax.persistence.PersistenceException;
 import java.util.List;
 
 public class ProductDAO {
