@@ -1,6 +1,7 @@
 package core.finalProject.controllers;
 
 
+import core.finalProject.Session;
 import core.finalProject.dao.impl.UserDAOImpl;
 import core.finalProject.entity.Hotel;
 import core.finalProject.entity.User;
@@ -26,7 +27,7 @@ public class HotelControllerImpl {
     }
 
     public Hotel addHotel(User user, Hotel hotel) throws BadRequestException, IOException, AccessDenied, Forbidden {
-        if (!user.equals(UserDAOImpl.getLoggedInUser()))
+        if (!user.equals(Session.getLoggedInUser()))
             throw new Forbidden("User " + user + " should be logged in to perform such action.");
         if (user.getUserType() != ADMIN)
             throw new AccessDenied("User " + user + " with such type cannot perform administrating.");
@@ -34,7 +35,7 @@ public class HotelControllerImpl {
     }
 
     public Hotel deleteHotel(User user, Hotel hotel) throws BadRequestException, IOException, AccessDenied, Forbidden {
-        if (!user.equals(UserDAOImpl.getLoggedInUser()))
+        if (!user.equals(Session.getLoggedInUser()))
             throw new Forbidden("User " + user + " should be logged in to perform such action.");
         if (user.getUserType() != ADMIN)
             throw new AccessDenied("User " + user + " with such type cannot perform administrating.");

@@ -1,6 +1,7 @@
 package core.finalProject.services;
 
 
+import core.finalProject.Session;
 import core.finalProject.dao.UserDAO;
 import core.finalProject.dao.impl.UserDAOImpl;
 import core.finalProject.entity.User;
@@ -19,12 +20,12 @@ public class UserServiceImpl {
     }
 
     public void logIn(User user) throws BadRequestException {
-        UserDAOImpl.setLoggedInUser(user);
+        Session.setLoggedInUser(user);
     }
 
 
     public void logOut(User user) throws Forbidden {
-        UserDAOImpl.setLoggedInUser(null);
+        Session.setLoggedInUser(null);
     }
 
     public User findUserById(long id) throws BadRequestException {

@@ -1,5 +1,6 @@
 package core.finalProject.controllers;
 
+import core.finalProject.Session;
 import core.finalProject.dao.impl.UserDAOImpl;
 import core.finalProject.entity.User;
 import core.finalProject.exceptions.BadRequestException;
@@ -17,14 +18,14 @@ public class OrderControllerImpl {
 
     public void addOrder(long roomId, long userId, long hotelId, LocalDate from, LocalDate to) throws BadRequestException, IOException, Forbidden {
         User user = userService.findUserById(userId);
-        if (!user.equals(UserDAOImpl.getLoggedInUser()))
+        if (!user.equals(Session.getLoggedInUser()))
             throw new Forbidden("User " + user + " should be logged in to perform such action.");
         orderService.addOrder(roomId, user, hotelId, from, to);
     }
 
     public void cancelOrder(long roomId, long userId) throws BadRequestException, IOException, Forbidden {
         User user = userService.findUserById(userId);
-        if (!user.equals(UserDAOImpl.getLoggedInUser()))
+        if (!user.equals(Session.getLoggedInUser()))
             throw new Forbidden("User " + user + " should be logged in to perform such action.");
         orderService.cancelOrder(roomId);
     }

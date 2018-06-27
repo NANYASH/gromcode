@@ -10,7 +10,7 @@ import java.util.List;
 
 public class UserDAOImpl extends GenericDAOImpl<User> implements UserDAO {
     private static String userDB = "/Users/nanya/Desktop/gromcode/UserDB.txt";
-    private static User loggedInUser;
+
 
 
     @Override
@@ -23,15 +23,6 @@ public class UserDAOImpl extends GenericDAOImpl<User> implements UserDAO {
     @Override
     public String getDb() {
         return userDB;
-    }
-
-    public static User getLoggedInUser() {
-        return loggedInUser;
-    }
-
-    public static void setLoggedInUser(User loggedInUser) {
-
-        UserDAOImpl.loggedInUser = loggedInUser;
     }
 
     @Override

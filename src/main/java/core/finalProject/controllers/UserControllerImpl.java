@@ -1,5 +1,6 @@
 package core.finalProject.controllers;
 
+import core.finalProject.Session;
 import core.finalProject.dao.impl.UserDAOImpl;
 import core.finalProject.entity.Hotel;
 import core.finalProject.entity.Room;
@@ -28,13 +29,13 @@ public class UserControllerImpl {
     }
 
     public void logIn(User user) throws BadRequestException {
-        if (UserDAOImpl.getLoggedInUser() != null)
-            throw new BadRequestException("User" + UserDAOImpl.getLoggedInUser() + "is still logged in.");
+        if (Session.getLoggedInUser() != null)
+            throw new BadRequestException("User" + Session.getLoggedInUser() + "is still logged in.");
         userService.logIn(user);
     }
 
     public void logOut(User user) throws BadRequestException, Forbidden {
-        if (!user.equals(UserDAOImpl.getLoggedInUser()))
+        if (!user.equals(Session.getLoggedInUser()))
             throw new Forbidden("User " + user + " should be logged in to perform such action.");
         userService.logOut(user);
     }
