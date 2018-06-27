@@ -1,8 +1,4 @@
-package hibernate.lesson2;
-
-
-import java.util.Arrays;
-import java.util.List;
+package hibernate.lesson2.hw.task1;
 
 
 public class Demo {
