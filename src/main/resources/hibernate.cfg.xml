@@ -15,6 +15,7 @@
         <mapping class="hibernate.lesson1.hw.Product"></mapping>
         <mapping class="hibernate.lesson2.hw.task1.Product"></mapping>
         <mapping class="hibernate.lesson2.hw.task2.Product"></mapping>
+        <mapping class="hibernate.lesson2.hw.task3.Product"></mapping>
 
 
     </session-factory>
