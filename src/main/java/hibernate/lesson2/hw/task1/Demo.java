@@ -5,9 +5,9 @@ public class Demo {
 
     public static void main(String[] args) {
         Product product = new Product();
-        product.setId(7);
-        product.setName("TEST1");
-        product.setDescription("blue");
+        product.setId(6);
+        product.setName("TEST2");
+        product.setDescription("green");
         product.setPrice(300);
 
         //ProductDAO.save(product);
