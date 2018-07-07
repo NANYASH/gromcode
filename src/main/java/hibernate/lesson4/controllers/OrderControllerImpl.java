@@ -8,14 +8,14 @@ import core.finalProject.services.OrderServiceImpl;
 import core.finalProject.services.UserServiceImpl;
 
 import java.io.IOException;
-import java.time.LocalDate;
+import java.util.Date;
 
 
 public class OrderControllerImpl {
     OrderServiceImpl orderService = new OrderServiceImpl();
     UserServiceImpl userService = new UserServiceImpl();
 
-    public void addOrder(long roomId, long userId, long hotelId, LocalDate from, LocalDate to) throws BadRequestException, IOException, Forbidden {
+    public void addOrder(long roomId, long userId, long hotelId, Date from, Date to) throws BadRequestException, IOException, Forbidden {
         User user = userService.findUserById(userId);
         if (!user.equals(Session.getLoggedInUser()))
             throw new Forbidden("User " + user + " should be logged in to perform such action.");

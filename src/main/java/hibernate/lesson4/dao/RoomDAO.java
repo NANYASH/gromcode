@@ -6,7 +6,6 @@ import hibernate.lesson4.exceptions.BadRequestException;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.query.NativeQuery;
-;import java.util.Date;
 import java.util.List;
 
 public class RoomDAO extends GenericDAO<Room> {
@@ -43,5 +42,5 @@ public class RoomDAO extends GenericDAO<Room> {
             throw e;
         }
     }
-    
+
 }
