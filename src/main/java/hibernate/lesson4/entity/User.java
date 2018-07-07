@@ -1,9 +1,12 @@
-package jdbc.lesson5;
+package hibernate.lesson4.entity;
 
 
+import javax.persistence.*;
 import java.util.List;
 
-public class User extends Entity {
+@Entity
+@Table(name = "USER_T")
+public class User {
     private long id;
     private String userName;
     private String password;
@@ -40,16 +43,20 @@ public class User extends Entity {
         return result;
     }
 
-    @Override
+    @SequenceGenerator(name = "US_SEQ", sequenceName = "USER_SEQ", allocationSize = 1)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "US_SEQ")
+    @Id
+    @Column(name = "ID")
     public long getId() {
         return id;
     }
 
-    @Override
+
     public void setId(long id) {
         this.id = id;
     }
 
+    @Column(name = "USER_NAME")
     public String getUserName() {
         return userName;
     }
@@ -58,6 +65,7 @@ public class User extends Entity {
         this.userName = userName;
     }
 
+    @Column(name = "PASSWORD")
     public String getPassword() {
         return password;
     }
@@ -66,6 +74,7 @@ public class User extends Entity {
         this.password = password;
     }
 
+    @Column(name = "COUNTRY")
     public String getCountry() {
         return country;
     }
@@ -74,6 +83,7 @@ public class User extends Entity {
         this.country = country;
     }
 
+    @Column(name = "TYPE")
     public UserType getUserType() {
         return userType;
     }
@@ -82,6 +92,7 @@ public class User extends Entity {
         this.userType = userType;
     }
 
+    @OneToMany( targetEntity = Order.class, fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "userOrdered")
     public List<Order> getOrders() {
         return orders;
     }

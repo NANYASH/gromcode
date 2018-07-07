@@ -1,16 +1,29 @@
-package jdbc.lesson5;
+package hibernate.lesson4.entity;
 
 
+import javax.persistence.*;
 import java.util.Date;
 
-
-public class Order extends Entity {
+@Entity
+@Table(name = "ORDER_T")
+public class Order {
     private long id;
     private User userOrdered;
     private Room room;
     private Date dateFrom;
     private Date dateTo;
     private double moneyPaid;
+
+    public Order() {
+    }
+
+    public Order(User userOrdered, Room room, Date dateFrom, Date dateTo, double moneyPaid) {
+        this.userOrdered = userOrdered;
+        this.room = room;
+        this.dateFrom = dateFrom;
+        this.dateTo = dateTo;
+        this.moneyPaid = moneyPaid;
+    }
 
     @Override
     public boolean equals(Object o) {
@@ -41,16 +54,24 @@ public class Order extends Entity {
         return result;
     }
 
-    @Override
+
+
+    @SequenceGenerator(name = "OR_SEQ", sequenceName = "ORDER_SEQ", allocationSize = 1)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "OR_SEQ")
+    @Id
+    @Column(name = "ID")
     public long getId() {
         return id;
     }
 
-    @Override
+
     public void setId(long id) {
         this.id = id;
     }
 
+
+    @ManyToOne(targetEntity = User.class, fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @JoinColumn(name = "ID_USER")
     public User getUserOrdered() {
         return userOrdered;
     }
@@ -59,6 +80,8 @@ public class Order extends Entity {
         this.userOrdered = userOrdered;
     }
 
+    @OneToOne(targetEntity = Room.class, fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @JoinColumn(name = "ID_ROOM")
     public Room getRoom() {
         return room;
     }
@@ -67,6 +90,7 @@ public class Order extends Entity {
         this.room = room;
     }
 
+    @Column(name = "DATE_FROM")
     public Date getDateFrom() {
         return dateFrom;
     }
@@ -75,6 +99,7 @@ public class Order extends Entity {
         this.dateFrom = dateFrom;
     }
 
+    @Column(name = "DATE_TO")
     public Date getDateTo() {
         return dateTo;
     }
@@ -83,6 +108,7 @@ public class Order extends Entity {
         this.dateTo = dateTo;
     }
 
+    @Column(name = "MONEY_PAID")
     public double getMoneyPaid() {
         return moneyPaid;
     }

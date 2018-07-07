@@ -1,4 +1,4 @@
-package jdbc.lesson5;
+package hibernate.lesson4.entity;
 
 
 public enum UserType {

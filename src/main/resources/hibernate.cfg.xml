@@ -18,6 +18,10 @@
         <mapping class="hibernate.lesson2.hw.task3.Product"></mapping>
         <mapping class="hibernate.lesson3.hw.Hotel"></mapping>
         <mapping class="hibernate.lesson3.hw.Room"></mapping>
+        <mapping class="hibernate.lesson4.entity.Room"></mapping>
+        <mapping class="hibernate.lesson4.entity.Hotel"></mapping>
+        <mapping class="hibernate.lesson4.entity.Order"></mapping>
+        <mapping class="hibernate.lesson4.entity.User"></mapping>
 
 
     </session-factory>
