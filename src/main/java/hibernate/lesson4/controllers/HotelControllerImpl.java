@@ -1,27 +1,29 @@
 package hibernate.lesson4.controllers;
 
 
-import core.finalProject.Session;
-import core.finalProject.entity.Hotel;
-import core.finalProject.entity.User;
-import core.finalProject.exceptions.AccessDenied;
-import core.finalProject.exceptions.BadRequestException;
-import core.finalProject.exceptions.Forbidden;
-import core.finalProject.services.HotelServiceImpl;
+
+import hibernate.lesson4.Session;
+import hibernate.lesson4.entity.Hotel;
+import hibernate.lesson4.entity.User;
+import hibernate.lesson4.exceptions.AccessDenied;
+import hibernate.lesson4.exceptions.BadRequestException;
+import hibernate.lesson4.exceptions.Forbidden;
+import hibernate.lesson4.services.HotelServiceImpl;
 
 import java.io.IOException;
+import java.util.List;
 
-import static core.finalProject.entity.UserType.ADMIN;
+import static hibernate.lesson4.entity.UserType.ADMIN;
 
 
 public class HotelControllerImpl {
     HotelServiceImpl hotelService = new HotelServiceImpl();
 
-    public Hotel findHotelByName(String name) throws BadRequestException {
+    public List<Hotel> findHotelByName(String name) throws BadRequestException {
         return hotelService.findHotelByName(name);
     }
 
-    public Hotel findHotelByCity(String city) throws BadRequestException {
+    public List<Hotel> findHotelByCity(String city) throws BadRequestException {
         return hotelService.findHotelByCity(city);
     }
 
@@ -33,11 +35,11 @@ public class HotelControllerImpl {
         return hotelService.addHotel(hotel);
     }
 
-    public Hotel deleteHotel(User user, Hotel hotel) throws BadRequestException, IOException, AccessDenied, Forbidden {
+    public void deleteHotel(User user, long id) throws BadRequestException, IOException, AccessDenied, Forbidden {
         if (!user.equals(Session.getLoggedInUser()))
             throw new Forbidden("User " + user + " should be logged in to perform such action.");
         if (user.getUserType() != ADMIN)
             throw new AccessDenied("User " + user + " with such type cannot perform administrating.");
-        return hotelService.deleteHotel(hotel);
+        hotelService.deleteHotel(id);
     }
 }

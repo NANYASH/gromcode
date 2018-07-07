@@ -1,11 +1,13 @@
 package hibernate.lesson4.controllers;
 
-import core.finalProject.Session;
-import core.finalProject.entity.User;
-import core.finalProject.exceptions.BadRequestException;
-import core.finalProject.exceptions.Forbidden;
-import core.finalProject.services.OrderServiceImpl;
-import core.finalProject.services.UserServiceImpl;
+
+
+import hibernate.lesson4.Session;
+import hibernate.lesson4.entity.User;
+import hibernate.lesson4.exceptions.BadRequestException;
+import hibernate.lesson4.exceptions.Forbidden;
+import hibernate.lesson4.services.OrderServiceImpl;
+import hibernate.lesson4.services.UserServiceImpl;
 
 import java.io.IOException;
 import java.util.Date;

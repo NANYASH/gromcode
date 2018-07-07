@@ -1,18 +1,20 @@
 package hibernate.lesson4.controllers;
 
-import core.finalProject.Session;
-import core.finalProject.entity.Hotel;
-import core.finalProject.entity.Room;
-import core.finalProject.entity.User;
-import core.finalProject.exceptions.AccessDenied;
-import core.finalProject.exceptions.BadRequestException;
-import core.finalProject.exceptions.Forbidden;
-import core.finalProject.services.UserServiceImpl;
-import core.finalProject.utils.Filter;
+
+import hibernate.lesson4.Session;
+import hibernate.lesson4.entity.Hotel;
+import hibernate.lesson4.entity.Room;
+import hibernate.lesson4.entity.User;
+import hibernate.lesson4.exceptions.AccessDenied;
+import hibernate.lesson4.exceptions.BadRequestException;
+import hibernate.lesson4.exceptions.Forbidden;
+import hibernate.lesson4.services.UserServiceImpl;
+import hibernate.lesson4.utils.Filter;
 
 import java.io.IOException;
-import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
 
 
 public class UserControllerImpl {
@@ -39,12 +41,12 @@ public class UserControllerImpl {
     }
 
 
-    public Hotel findHotelByName(String name) throws BadRequestException {
+    public List<Hotel> findHotelByName(String name) throws BadRequestException {
         return hotelController.findHotelByName(name);
     }
 
 
-    public Hotel findHotelByCity(String city) throws BadRequestException {
+    public List<Hotel> findHotelByCity(String city) throws BadRequestException {
         return hotelController.findHotelByCity(city);
     }
 
@@ -52,7 +54,7 @@ public class UserControllerImpl {
         return roomController.findRooms(filter);
     }
 
-    public void bookRoom(long roomId, long userId, long hotelId, LocalDate from, LocalDate to) throws BadRequestException, IOException, Forbidden {
+    public void bookRoom(long roomId, long userId, long hotelId, Date from, Date to) throws BadRequestException, IOException, Forbidden {
         orderController.addOrder(roomId, userId, hotelId, from, to);
     }
 
@@ -67,8 +69,8 @@ public class UserControllerImpl {
     }
 
 
-    public Hotel deleteHotel(User user, Hotel hotel) throws BadRequestException, AccessDenied, IOException, Forbidden {
-        return hotelController.deleteHotel(user, hotel);
+    public void deleteHotel(User user, long id) throws BadRequestException, AccessDenied, IOException, Forbidden {
+         hotelController.deleteHotel(user, id);
     }
 
 
@@ -77,8 +79,8 @@ public class UserControllerImpl {
     }
 
 
-    public Room deleteRoom(User user, Room room) throws BadRequestException, AccessDenied, IOException, Forbidden {
-        return roomController.deleteRoom(user, room);
+    public void deleteRoom(User user, long id) throws BadRequestException, AccessDenied, IOException, Forbidden {
+         roomController.deleteRoom(user, id);
     }
 
 }

@@ -1,19 +1,21 @@
 package hibernate.lesson4.controllers;
 
 
-import core.finalProject.Session;
-import core.finalProject.entity.Room;
-import core.finalProject.entity.User;
-import core.finalProject.exceptions.AccessDenied;
-import core.finalProject.exceptions.BadRequestException;
-import core.finalProject.exceptions.Forbidden;
-import core.finalProject.services.RoomServiceImpl;
-import core.finalProject.utils.Filter;
+
+
+import hibernate.lesson4.Session;
+import hibernate.lesson4.entity.Room;
+import hibernate.lesson4.entity.User;
+import hibernate.lesson4.exceptions.AccessDenied;
+import hibernate.lesson4.exceptions.BadRequestException;
+import hibernate.lesson4.exceptions.Forbidden;
+import hibernate.lesson4.services.RoomServiceImpl;
+import hibernate.lesson4.utils.Filter;
 
 import java.io.IOException;
 import java.util.ArrayList;
 
-import static core.finalProject.entity.UserType.ADMIN;
+import static hibernate.lesson4.entity.UserType.ADMIN;
 
 
 public class RoomControllerImpl {
@@ -27,12 +29,12 @@ public class RoomControllerImpl {
         return roomService.addRoom(room);
     }
 
-    public Room deleteRoom(User user, Room room) throws BadRequestException, IOException, AccessDenied, Forbidden {
+    public void deleteRoom(User user, long id) throws BadRequestException, IOException, AccessDenied, Forbidden {
         if (!user.equals(Session.getLoggedInUser()))
             throw new Forbidden("User " + user + " should be logged in to perform such action.");
         if (user.getUserType() != ADMIN)
             throw new AccessDenied("User " + user + " with such type cannot perform administrating.");
-        return roomService.deleteRoom(room);
+        roomService.deleteRoom(id);
     }
 
     public ArrayList<Room> findRooms(Filter filter) throws BadRequestException {
