@@ -28,8 +28,7 @@ public class User {
         if (userName != null ? !userName.equals(user.userName) : user.userName != null) return false;
         if (password != null ? !password.equals(user.password) : user.password != null) return false;
         if (country != null ? !country.equals(user.country) : user.country != null) return false;
-        if (userType != user.userType) return false;
-        return orders != null ? orders.equals(user.orders) : user.orders == null;
+        return userType == user.userType;
     }
 
     @Override
@@ -39,7 +38,6 @@ public class User {
         result = 31 * result + (password != null ? password.hashCode() : 0);
         result = 31 * result + (country != null ? country.hashCode() : 0);
         result = 31 * result + (userType != null ? userType.hashCode() : 0);
-        result = 31 * result + (orders != null ? orders.hashCode() : 0);
         return result;
     }
 
@@ -83,7 +81,8 @@ public class User {
         this.country = country;
     }
 
-    @Column(name = "TYPE")
+    @Enumerated(EnumType.STRING)
+    @Column(name = "USER_TYPE")
     public UserType getUserType() {
         return userType;
     }

@@ -1,4 +1,4 @@
-package hibernate.lesson4.demo;
+package hibernate.lesson4.demo.TestDAO;
 
 
 import hibernate.lesson4.dao.HotelDAO;
@@ -14,7 +14,9 @@ public class DemoHotel {
         hotel.setCity("Kiev");
         hotel.setCountry("Ukraine");
         hotel.setStreet("Street1");
-        hotelDAO.save(hotel);
+
+        System.out.println(hotelDAO.findByCity("Kiev"));;
+        //hotelDAO.save(hotel);
 
     }
 }
