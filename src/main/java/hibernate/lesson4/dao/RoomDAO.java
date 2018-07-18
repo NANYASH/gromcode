@@ -11,6 +11,7 @@ import java.util.List;
 public class RoomDAO extends GenericDAO<Room> {
 
     private static final String ALL_ROOMS = "SELECT * FROM ROOM";
+    private static final String DELETE_ROOM_BY_ID = "DELETE * FROM ROOM WHERE ID = ?";
 
     @Override
     public Room save(Room room) {
@@ -23,8 +24,16 @@ public class RoomDAO extends GenericDAO<Room> {
     }
 
     @Override
-    public void delete(Class<Room> c, long id) throws BadRequestException {
-        super.delete(c, id);
+    public void delete(long id) throws BadRequestException {
+        try( Session session = createSessionFactory().openSession()) {
+            NativeQuery query = session.createNativeQuery(DELETE_ROOM_BY_ID);
+            query.addEntity(Room.class);
+            query.setParameter(1,id);
+            query.executeUpdate();
+        }catch (HibernateException e){
+            System.err.println(e.getMessage());
+            throw e;
+        }
     }
 
     @Override

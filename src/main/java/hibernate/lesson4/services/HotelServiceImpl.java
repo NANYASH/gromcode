@@ -32,7 +32,7 @@ public class HotelServiceImpl {
     }
 
     public void deleteHotel(long id) throws AccessDenied, Forbidden, IOException, BadRequestException {
-        hotelDAO.delete(Hotel.class,id);
+        hotelDAO.delete(id);
     }
 
     public Hotel findHotelById(long id) throws BadRequestException {

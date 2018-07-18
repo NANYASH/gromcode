@@ -19,6 +19,7 @@ public class UserDemolDAO {
         user.setUserType(UserType.ADMIN);
 
         userDAO.save(user);
+        //System.out.println(userDAO.findByUserName("Anastasiia"));
 
     }
 }

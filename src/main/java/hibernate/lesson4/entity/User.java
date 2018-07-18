@@ -17,30 +17,6 @@ public class User {
     public User() {
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-
-        User user = (User) o;
-
-        if (id != user.id) return false;
-        if (userName != null ? !userName.equals(user.userName) : user.userName != null) return false;
-        if (password != null ? !password.equals(user.password) : user.password != null) return false;
-        if (country != null ? !country.equals(user.country) : user.country != null) return false;
-        return userType == user.userType;
-    }
-
-    @Override
-    public int hashCode() {
-        int result = (int) (id ^ (id >>> 32));
-        result = 31 * result + (userName != null ? userName.hashCode() : 0);
-        result = 31 * result + (password != null ? password.hashCode() : 0);
-        result = 31 * result + (country != null ? country.hashCode() : 0);
-        result = 31 * result + (userType != null ? userType.hashCode() : 0);
-        return result;
-    }
-
     @SequenceGenerator(name = "US_SEQ", sequenceName = "USER_SEQ", allocationSize = 1)
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "US_SEQ")
     @Id
@@ -99,4 +75,29 @@ public class User {
     public void setOrders(List<Order> orders) {
         this.orders = orders;
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        User user = (User) o;
+
+        if (id != user.id) return false;
+        if (userName != null ? !userName.equals(user.userName) : user.userName != null) return false;
+        if (password != null ? !password.equals(user.password) : user.password != null) return false;
+        if (country != null ? !country.equals(user.country) : user.country != null) return false;
+        return userType == user.userType;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = (int) (id ^ (id >>> 32));
+        result = 31 * result + (userName != null ? userName.hashCode() : 0);
+        result = 31 * result + (password != null ? password.hashCode() : 0);
+        result = 31 * result + (country != null ? country.hashCode() : 0);
+        result = 31 * result + (userType != null ? userType.hashCode() : 0);
+        return result;
+    }
+
 }

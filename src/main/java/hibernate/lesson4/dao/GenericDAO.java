@@ -9,7 +9,7 @@ import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import org.hibernate.cfg.Configuration;
 
-public class GenericDAO<T> {
+public abstract class GenericDAO<T> {
     private static SessionFactory sessionFactory;
 
     public T save(T t){
@@ -24,6 +24,7 @@ public class GenericDAO<T> {
             System.err.println(e.getMessage());
             if (tr != null)
                 tr.rollback();
+            throw e;
         }
         System.out.println("Save is done");
         return t;
@@ -42,26 +43,13 @@ public class GenericDAO<T> {
             System.err.println(e.getMessage());
             if (tr != null)
                 tr.rollback();
+            throw e;
         }
         System.out.println("Update is done");
         return t;
     }
 
-    public void delete(Class<T> c,long id) throws BadRequestException {
-        Transaction tr = null;
-        try(Session session = createSessionFactory().openSession()) {
-            tr = session.getTransaction();
-            tr.begin();
-            session.delete(findById(c,id));
-            tr.commit();
-        }catch (HibernateException e) {
-            System.err.println("Delete is failed");
-            System.err.println(e.getMessage());
-            if (tr != null)
-                tr.rollback();
-        }
-        System.out.println("Delete is done");
-    }
+    abstract void delete(long id) throws BadRequestException;
 
     public T findById(Class<T> c,long id) throws BadRequestException {
         try(Session session = createSessionFactory().openSession()) {
@@ -69,8 +57,8 @@ public class GenericDAO<T> {
         }catch (HibernateException e) {
             System.err.println(c.getName()+" with such id \"" + id + "\" does not exist.");
             System.err.println(e.getMessage());
+            throw e;
         }
-        throw new BadRequestException("Unexpected exception");
     }
 
 

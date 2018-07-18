@@ -30,4 +30,9 @@ public class UserServiceImpl {
     public User findUserById(long id) throws BadRequestException {
         return userDAO.findById(User.class,id);
     }
-}
+
+    public User findUserByName(String username) throws BadRequestException {
+        return userDAO.findByUserName(username);
+    }
+
+    }

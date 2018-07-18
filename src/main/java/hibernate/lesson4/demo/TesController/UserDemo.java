@@ -2,7 +2,7 @@ package hibernate.lesson4.demo.TesController;
 
 
 
-import hibernate.lesson4.controllers.UserControllerImpl;
+import hibernate.lesson4.controllers.UserController;
 import hibernate.lesson4.entity.Hotel;
 import hibernate.lesson4.entity.Room;
 import hibernate.lesson4.entity.User;
@@ -27,6 +27,12 @@ public class UserDemo {
         user.setCountry("Kiev");
         user.setUserType(UserType.ADMIN);
 
+        User user1 = new User();
+        user1.setUserName("Lena");
+        user1.setPassword("password");
+        user1.setCountry("Kiev");
+        user1.setUserType(UserType.ADMIN);
+
        // userDAO.save(user);
 
         Hotel hotel = new Hotel();
@@ -46,12 +52,14 @@ public class UserDemo {
         room.setDateAvailableFrom(new Date());
         room.setHotel(hotel);
 
-        UserControllerImpl userController = new UserControllerImpl();
+        UserController userController = new UserController();
         userController.logIn(user);
         //userController.addHotel(user,hotel);
         //userController.deleteHotel(user,121);
         //userController.addRoom(user,room);
-        userController.bookRoom(161,45,81,new Date(),new Date());
+        //userController.bookRoom(161,45,81,new Date(),new Date());
+        userController.registerUser(user1);
+
 
     }
 }

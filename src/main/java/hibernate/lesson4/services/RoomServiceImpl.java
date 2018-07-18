@@ -23,7 +23,7 @@ public class RoomServiceImpl {
 
 
     public void deleteRoom(long id) throws BadRequestException, AccessDenied, Forbidden, IOException {
-         roomDAO.delete(Room.class,id);
+         roomDAO.delete(id);
     }
 
     public ArrayList<Room> findRooms(Filter filter) throws BadRequestException {

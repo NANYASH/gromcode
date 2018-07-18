@@ -1,6 +1,7 @@
 package hibernate.lesson4.dao;
 
 
+import hibernate.lesson2.hw.task3.Product;
 import hibernate.lesson4.entity.Hotel;
 import hibernate.lesson4.exceptions.BadRequestException;
 import org.hibernate.HibernateException;
@@ -13,6 +14,7 @@ public class HotelDAO extends GenericDAO<Hotel> {
 
     private static final String HOTELS_BY_NAME = "SELECT * FROM HOTEL WHERE HOTEL_NAME = ?";
     private static final String HOTELS_BY_CITY = "SELECT * FROM HOTEL WHERE CITY = ?";
+    private static final String DELETE_HOTEL_BY_ID = "DELETE * FROM HOTEL WHERE ID = ?";
 
     @Override
     public Hotel save(Hotel hotel) {
@@ -25,8 +27,16 @@ public class HotelDAO extends GenericDAO<Hotel> {
     }
 
     @Override
-    public void delete(Class<Hotel> c, long id) throws BadRequestException {
-        super.delete(c, id);
+    public void delete(long id) throws BadRequestException {
+        try( Session session = createSessionFactory().openSession()) {
+            NativeQuery query = session.createNativeQuery(DELETE_HOTEL_BY_ID);
+            query.addEntity(Hotel.class);
+            query.setParameter(1,id);
+            query.executeUpdate();
+        }catch (HibernateException e){
+            System.err.println(e.getMessage());
+            throw e;
+        }
     }
 
     @Override

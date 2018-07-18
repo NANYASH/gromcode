@@ -13,7 +13,7 @@ import java.io.IOException;
 import java.util.Date;
 
 
-public class OrderControllerImpl {
+public class OrderController {
     OrderServiceImpl orderService = new OrderServiceImpl();
     UserServiceImpl userService = new UserServiceImpl();
 
