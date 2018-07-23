@@ -23,12 +23,7 @@ public class UserController {
     UserServiceImpl userService = new UserServiceImpl();
 
     public User registerUser(User user) throws BadRequestException, IOException {
-        try {
-            userService.findUserByName(user.getUserName());
-        }catch (NoResultException e) {
             return userService.registerUser(user);
-        }
-        throw new BadRequestException("User with name  \""+user.getUserName()+"\" already exists.");
     }
 
     public void logIn(User user) throws BadRequestException {

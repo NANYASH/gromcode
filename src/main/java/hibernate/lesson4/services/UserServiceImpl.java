@@ -5,6 +5,7 @@ import hibernate.lesson4.Session;
 import hibernate.lesson4.dao.UserDAO;
 import hibernate.lesson4.entity.User;
 import hibernate.lesson4.exceptions.BadRequestException;
+import hibernate.lesson4.exceptions.DBException;
 import hibernate.lesson4.exceptions.Forbidden;
 
 import java.io.IOException;
@@ -14,8 +15,8 @@ public class UserServiceImpl {
     UserDAO userDAO = new UserDAO();
 
 
-    public User registerUser(User user) throws BadRequestException, IOException {
-        return userDAO.save(user);
+    public User registerUser(User user) throws BadRequestException, IOException, DBException {
+            return userDAO.save(user);
     }
 
     public void logIn(User user) throws BadRequestException {

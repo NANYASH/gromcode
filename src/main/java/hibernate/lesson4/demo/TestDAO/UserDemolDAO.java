@@ -13,10 +13,11 @@ public class UserDemolDAO {
         User user = new User();
 
 
-        user.setUserName("MASHA");
+        user.setUserName("Rita");
         user.setPassword("password");
         user.setCountry("Kiev");
-        user.setUserType(UserType.USERS);
+        user.setUserType(UserType.USER);
+
 
         userDAO.save(user);
         //System.out.println(userDAO.findByUserName("Anastasiia"));

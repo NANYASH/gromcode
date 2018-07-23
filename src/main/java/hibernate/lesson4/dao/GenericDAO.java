@@ -3,6 +3,7 @@ package hibernate.lesson4.dao;
 
 
 import hibernate.lesson4.exceptions.BadRequestException;
+import hibernate.lesson4.exceptions.DBException;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -12,7 +13,7 @@ import org.hibernate.cfg.Configuration;
 public abstract class GenericDAO<T> {
     private static SessionFactory sessionFactory;
 
-    public T save(T t){
+    public T save(T t) throws DBException {
         Transaction tr = null;
         try(Session session = createSessionFactory().openSession()) {
             tr = session.getTransaction();
