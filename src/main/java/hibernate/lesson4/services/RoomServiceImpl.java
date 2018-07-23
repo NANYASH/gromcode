@@ -6,6 +6,7 @@ import hibernate.lesson4.dao.RoomDAO;
 import hibernate.lesson4.entity.Room;
 import hibernate.lesson4.exceptions.AccessDenied;
 import hibernate.lesson4.exceptions.BadRequestException;
+import hibernate.lesson4.exceptions.DBException;
 import hibernate.lesson4.exceptions.Forbidden;
 import hibernate.lesson4.utils.Filter;
 
@@ -17,7 +18,7 @@ import java.util.Date;
 public class RoomServiceImpl {
     RoomDAO roomDAO = new RoomDAO();
 
-    public Room addRoom(Room room) throws AccessDenied, Forbidden, BadRequestException, IOException {
+    public Room addRoom(Room room) throws AccessDenied, Forbidden, BadRequestException, IOException, DBException {
         return roomDAO.save(room);
     }
 

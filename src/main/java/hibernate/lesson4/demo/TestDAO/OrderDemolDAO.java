@@ -6,11 +6,12 @@ import hibernate.lesson4.entity.Order;
 import hibernate.lesson4.entity.Room;
 import hibernate.lesson4.entity.User;
 import hibernate.lesson4.entity.UserType;
+import hibernate.lesson4.exceptions.DBException;
 
 import java.util.Date;
 
 public class OrderDemolDAO {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws DBException {
         OrderDAO orderDAO = new OrderDAO();
 
         User user = new User();

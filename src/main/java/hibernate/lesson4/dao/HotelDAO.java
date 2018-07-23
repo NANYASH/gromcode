@@ -4,6 +4,7 @@ package hibernate.lesson4.dao;
 import hibernate.lesson2.hw.task3.Product;
 import hibernate.lesson4.entity.Hotel;
 import hibernate.lesson4.exceptions.BadRequestException;
+import hibernate.lesson4.exceptions.DBException;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.query.NativeQuery;
@@ -17,7 +18,7 @@ public class HotelDAO extends GenericDAO<Hotel> {
     private static final String DELETE_HOTEL_BY_ID = "DELETE * FROM HOTEL WHERE ID = ?";
 
     @Override
-    public Hotel save(Hotel hotel) {
+    public Hotel save(Hotel hotel) throws DBException {
         return super.save(hotel);
     }
 

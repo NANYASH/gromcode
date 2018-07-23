@@ -8,6 +8,7 @@ import hibernate.lesson4.entity.Order;
 import hibernate.lesson4.entity.Room;
 import hibernate.lesson4.entity.User;
 import hibernate.lesson4.exceptions.BadRequestException;
+import hibernate.lesson4.exceptions.DBException;
 import hibernate.lesson4.exceptions.Forbidden;
 
 import java.io.IOException;
@@ -20,7 +21,7 @@ public class OrderServiceImpl {
     RoomServiceImpl roomService = new RoomServiceImpl();
 
 
-    public void addOrder(long roomId, User user, long hotelId, Date from, Date to) throws BadRequestException, Forbidden, IOException {
+    public void addOrder(long roomId, User user, long hotelId, Date from, Date to) throws BadRequestException, Forbidden, IOException, DBException {
         Room room = roomService.findRoomById(roomId);
         if (!room.getDateAvailableFrom().before(new Date()))
             throw new BadRequestException("Such room " + room + " is not available.");

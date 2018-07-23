@@ -5,12 +5,13 @@ package hibernate.lesson4.demo.TestDAO;
 import hibernate.lesson4.dao.RoomDAO;
 import hibernate.lesson4.entity.Hotel;
 import hibernate.lesson4.entity.Room;
+import hibernate.lesson4.exceptions.DBException;
 
 
 import java.util.Date;
 
 public class RoomDemolDAO {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws DBException {
         RoomDAO roomDAO = new RoomDAO();
 
 

@@ -3,6 +3,7 @@ package hibernate.lesson4.dao;
 
 import hibernate.lesson4.entity.Order;
 import hibernate.lesson4.exceptions.BadRequestException;
+import hibernate.lesson4.exceptions.DBException;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.query.NativeQuery;
@@ -12,7 +13,7 @@ public class OrderDAO extends GenericDAO<Order> {
     private static final String DELETE_ORDER_BY_ID = "DELETE * FROM ORDER_T WHERE ID = ?";
 
     @Override
-    public Order save(Order order) {
+    public Order save(Order order) throws DBException {
         return super.save(order);
     }
 

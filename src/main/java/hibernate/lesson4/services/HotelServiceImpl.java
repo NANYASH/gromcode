@@ -6,6 +6,7 @@ import hibernate.lesson4.dao.HotelDAO;
 import hibernate.lesson4.entity.Hotel;
 import hibernate.lesson4.exceptions.AccessDenied;
 import hibernate.lesson4.exceptions.BadRequestException;
+import hibernate.lesson4.exceptions.DBException;
 import hibernate.lesson4.exceptions.Forbidden;
 
 import java.io.IOException;
@@ -27,7 +28,7 @@ public class HotelServiceImpl {
         throw new BadRequestException("Hotels with such city \"" + city + "\" does not exist.");
     }
 
-    public Hotel addHotel(Hotel hotel) throws BadRequestException, AccessDenied, Forbidden, IOException {
+    public Hotel addHotel(Hotel hotel) throws BadRequestException, AccessDenied, Forbidden, IOException, DBException {
         return hotelDAO.save(hotel);
     }
 

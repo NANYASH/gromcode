@@ -3,6 +3,7 @@ package hibernate.lesson4.dao;
 
 import hibernate.lesson4.entity.Room;
 import hibernate.lesson4.exceptions.BadRequestException;
+import hibernate.lesson4.exceptions.DBException;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.query.NativeQuery;
@@ -14,7 +15,7 @@ public class RoomDAO extends GenericDAO<Room> {
     private static final String DELETE_ROOM_BY_ID = "DELETE * FROM ROOM WHERE ID = ?";
 
     @Override
-    public Room save(Room room) {
+    public Room save(Room room) throws DBException {
         return super.save(room);
     }
 
