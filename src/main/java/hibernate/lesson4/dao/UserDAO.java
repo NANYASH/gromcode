@@ -1,22 +1,48 @@
 package hibernate.lesson4.dao;
 
+import hibernate.lesson2.hw.task2.Product;
 import hibernate.lesson4.entity.User;
+import hibernate.lesson4.entity.UserType;
 import hibernate.lesson4.exceptions.BadRequestException;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
+import org.hibernate.Transaction;
 import org.hibernate.query.NativeQuery;
+import org.hibernate.query.Query;
 
+import javax.jws.soap.SOAPBinding;
 import javax.persistence.NoResultException;
 
 public class UserDAO extends GenericDAO<User> {
 
-    private static final String DELETE_USER_BY_ID = "DELETE * FROM USER WHERE ID = ?";
+    private static final String DELETE_USER_BY_ID = "DELETE * FROM USER_T WHERE ID = ?";
     private static final String FIND_USER_BY_USERNAME = "SELECT * FROM USER_T WHERE USER_NAME = ?";
+    private static final String SAVE_USER = "INSERT INTO USER_T (ID, USER_NAME, PASSWORD, COUNTRY, USER_TYPE) " +
+            "SELECT USER_SEQ.nextval,?,?,?,? " +
+            "FROM dual " +
+            "WHERE NOT EXISTS (SELECT 1 FROM USER_T WHERE USER_NAME = ?)";
+
 
     @Override
     public User save(User user) {
-        return super.save(user);
+        try( Session session = createSessionFactory().openSession()) {
+            NativeQuery query = session.createNativeQuery(SAVE_USER);
+            query.addEntity(User.class);
+            query.setParameter(1,user.getUserName());
+            query.setParameter(2,user.getPassword());
+            query.setParameter(3,user.getCountry());
+            query.setParameter(4,user.getUserType());
+            query.setParameter(5,user.getUserName());
+            Transaction transaction = session.beginTransaction();
+            query.executeUpdate();
+            transaction.commit();
+        }catch (HibernateException e){
+            System.err.println(e.getMessage());
+            throw e;
+        }
+        return user;
     }
+
 
     @Override
     public User update(User user) {

@@ -33,6 +33,12 @@ public class UserDemo {
         user1.setCountry("Kiev");
         user1.setUserType(UserType.ADMIN);
 
+        User user2 = new User();
+        user1.setUserName("Anastasia");
+        user1.setPassword("password");
+        user1.setCountry("Kiev");
+        user1.setUserType(UserType.ADMIN);
+
        // userDAO.save(user);
 
         Hotel hotel = new Hotel();
@@ -58,7 +64,7 @@ public class UserDemo {
         //userController.deleteHotel(user,121);
         //userController.addRoom(user,room);
         //userController.bookRoom(161,45,81,new Date(),new Date());
-        userController.registerUser(user1);
+        userController.registerUser(user2);
 
 
     }
