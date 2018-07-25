@@ -59,6 +59,7 @@ public class RoomDAO extends GenericDAO<Room> {
             if (filter.getStreet() != null) queryString +=" AND HOTEL.STREET = \'"+filter.getStreet()+"\'";
             if (filter.getNumberOfGuests() != 0) queryString +=" AND ROOM.NUMBER_OF_GUESTS = "+filter.getNumberOfGuests();
             if (filter.getPrice() != 0) queryString +=" AND ROOM.PRICE = "+filter.getPrice();
+            if (filter.getDateAvailableFrom() != null) queryString +=" AND ROOM.DATE_AVAILABLE_FROM= "+filter.getDateAvailableFrom();
             NativeQuery query = session.createNativeQuery(queryString);
             query.addEntity(Room.class);
             query.setParameter(1,filter.getBreakfastIncluded());
