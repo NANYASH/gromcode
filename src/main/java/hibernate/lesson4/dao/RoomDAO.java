@@ -8,9 +8,6 @@ import hibernate.lesson4.utils.Filter;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.query.NativeQuery;
-
-import javax.transaction.Transactional;
-import java.util.Date;
 import java.util.List;
 
 public class RoomDAO extends GenericDAO<Room> {
