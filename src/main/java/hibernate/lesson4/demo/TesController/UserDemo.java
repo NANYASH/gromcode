@@ -9,6 +9,7 @@ import hibernate.lesson4.entity.User;
 import hibernate.lesson4.entity.UserType;
 import hibernate.lesson4.exceptions.AccessDenied;
 import hibernate.lesson4.exceptions.BadRequestException;
+import hibernate.lesson4.exceptions.DBException;
 import hibernate.lesson4.exceptions.Forbidden;
 
 import java.io.IOException;
@@ -16,7 +17,7 @@ import java.util.Date;
 
 
 public class UserDemo {
-    public static void main(String[] args) throws Forbidden, BadRequestException, AccessDenied, IOException {
+    public static void main(String[] args) throws Forbidden, BadRequestException, AccessDenied, IOException, DBException {
        // UserDAO userDAO = new UserDAO();
 
         User user = new User();
@@ -55,7 +56,7 @@ public class UserDemo {
         room.setPrice(400);
         room.setBreakfastIncluded(0);
         room.setPetsAllowed(1);
-        room.setDateAvailableFrom(new Date());
+        //room.setDateAvailableFrom(new Date());
         room.setHotel(hotel);
 
         UserController userController = new UserController();
@@ -64,7 +65,8 @@ public class UserDemo {
         //userController.deleteHotel(user,121);
         //userController.addRoom(user,room);
         //userController.bookRoom(161,45,81,new Date(),new Date());
-        userController.registerUser(user2);
+        //userController.registerUser(user2);
+
 
 
     }

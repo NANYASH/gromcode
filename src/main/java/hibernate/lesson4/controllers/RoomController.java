@@ -8,6 +8,7 @@ import hibernate.lesson4.entity.Room;
 import hibernate.lesson4.entity.User;
 import hibernate.lesson4.exceptions.AccessDenied;
 import hibernate.lesson4.exceptions.BadRequestException;
+import hibernate.lesson4.exceptions.DBException;
 import hibernate.lesson4.exceptions.Forbidden;
 import hibernate.lesson4.services.RoomServiceImpl;
 import hibernate.lesson4.utils.Filter;
@@ -15,6 +16,7 @@ import hibernate.lesson4.utils.Filter;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 import static hibernate.lesson4.entity.UserType.ADMIN;
 
@@ -24,7 +26,7 @@ public class RoomController {
 
     OrderController orderController = new OrderController();
 
-    public Room addRoom(User user, Room room) throws BadRequestException, IOException, AccessDenied, Forbidden {
+    public Room addRoom(User user, Room room) throws BadRequestException, IOException, AccessDenied, Forbidden, DBException {
         if (!user.equals(Session.getLoggedInUser()))
             throw new Forbidden("User " + user + " should be logged in to perform such action.");
         if (user.getUserType() != ADMIN)
@@ -40,11 +42,11 @@ public class RoomController {
         roomService.deleteRoom(id);
     }
 
-    public ArrayList<Room> findRooms(Filter filter) throws BadRequestException {
+    public List<Room> findRooms(Filter filter) throws BadRequestException {
         return roomService.findRooms(filter);
     }
 
-    public void bookRoom(long roomId, long userId, long hotelId, Date from, Date to) throws BadRequestException, IOException, Forbidden {
+    public void bookRoom(long roomId, long userId, long hotelId, Date from, Date to) throws BadRequestException, IOException, Forbidden, DBException {
         orderController.addOrder(roomId, userId, hotelId, from, to);
     }
 

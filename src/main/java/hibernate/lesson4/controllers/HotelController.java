@@ -7,6 +7,7 @@ import hibernate.lesson4.entity.Hotel;
 import hibernate.lesson4.entity.User;
 import hibernate.lesson4.exceptions.AccessDenied;
 import hibernate.lesson4.exceptions.BadRequestException;
+import hibernate.lesson4.exceptions.DBException;
 import hibernate.lesson4.exceptions.Forbidden;
 import hibernate.lesson4.services.HotelServiceImpl;
 
@@ -27,7 +28,7 @@ public class HotelController {
         return hotelService.findHotelByCity(city);
     }
 
-    public Hotel addHotel(User user, Hotel hotel) throws BadRequestException, IOException, AccessDenied, Forbidden {
+    public Hotel addHotel(User user, Hotel hotel) throws BadRequestException, IOException, AccessDenied, Forbidden, DBException {
         if (!user.equals(Session.getLoggedInUser()))
             throw new Forbidden("User " + user + " should be logged in to perform such action.");
         if (user.getUserType() != ADMIN)

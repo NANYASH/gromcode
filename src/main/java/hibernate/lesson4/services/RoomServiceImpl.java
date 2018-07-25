@@ -13,6 +13,7 @@ import hibernate.lesson4.utils.Filter;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 
 public class RoomServiceImpl {
@@ -27,11 +28,9 @@ public class RoomServiceImpl {
          roomDAO.delete(id);
     }
 
-    public ArrayList<Room> findRooms(Filter filter) throws BadRequestException {
-        ArrayList<Room> foundRooms = new ArrayList<>();
-        for (Object o : roomDAO.getAll())
-            if (filter.findMatches((Room) o))
-                foundRooms.add((Room) o);
+    public List<Room> findRooms(Filter filter) throws BadRequestException {
+        List<Room> foundRooms =
+        roomDAO.findRoomsByParameters(filter);
         return foundRooms;
     }
 

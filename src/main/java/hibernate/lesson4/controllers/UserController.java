@@ -7,6 +7,7 @@ import hibernate.lesson4.entity.Room;
 import hibernate.lesson4.entity.User;
 import hibernate.lesson4.exceptions.AccessDenied;
 import hibernate.lesson4.exceptions.BadRequestException;
+import hibernate.lesson4.exceptions.DBException;
 import hibernate.lesson4.exceptions.Forbidden;
 import hibernate.lesson4.services.UserServiceImpl;
 import hibernate.lesson4.utils.Filter;
@@ -22,7 +23,7 @@ public class UserController {
 
     UserServiceImpl userService = new UserServiceImpl();
 
-    public User registerUser(User user) throws BadRequestException, IOException {
+    public User registerUser(User user) throws BadRequestException, IOException, DBException {
             return userService.registerUser(user);
     }
 

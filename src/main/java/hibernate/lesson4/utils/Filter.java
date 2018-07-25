@@ -15,7 +15,7 @@ public class Filter {
     private double price;
     private int breakfastIncluded;
     private int petsAllowed;
-    private Date dateAvailableFrom;
+  //  private Date dateAvailableFrom;
 
 
     public Filter() {
@@ -32,7 +32,7 @@ public class Filter {
         if (country != null && !country.equals(room.getHotel().getCountry())) return false;
         if (city != null && !city.equals(room.getHotel().getCity())) return false;
         if (street != null && !street.equals(room.getHotel().getStreet())) return false;
-        if (dateAvailableFrom != null && !dateAvailableFrom.equals(room.getDateAvailableFrom())) return false;
+       // if (dateAvailableFrom != null && !dateAvailableFrom.equals(room.getDateAvailableFrom())) return false;
         return true;
     }
 
@@ -100,11 +100,11 @@ public class Filter {
         this.petsAllowed = petsAllowed;
     }
 
-    public Date getDateAvailableFrom() {
-        return dateAvailableFrom;
-    }
+   // public Date getDateAvailableFrom() {
+   //     return dateAvailableFrom;
+   // }
 
-    public void setDateAvailableFrom(Date dateAvailableFrom) {
-        this.dateAvailableFrom = dateAvailableFrom;
-    }
+   // public void setDateAvailableFrom(Date dateAvailableFrom) {
+    //    this.dateAvailableFrom = dateAvailableFrom;
+    //}
 }

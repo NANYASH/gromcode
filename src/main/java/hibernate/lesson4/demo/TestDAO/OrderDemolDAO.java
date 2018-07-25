@@ -29,7 +29,7 @@ public class OrderDemolDAO {
         room.setPrice(100);
         room.setBreakfastIncluded(1);
         room.setPetsAllowed(1);
-        room.setDateAvailableFrom(new Date());
+      //  room.setDateAvailableFrom(new Date());
        // room.setHotel(hotel);
 
         Order order = new Order();
