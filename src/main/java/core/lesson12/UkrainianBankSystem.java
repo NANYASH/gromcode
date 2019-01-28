@@ -22,7 +22,7 @@ public class UkrainianBankSystem implements BankSystem {
     public void transferMoney(User fromUser, User toUser, int amount) {
         double totalAmount = amount + amount * fromUser.getBank().getCommission(amount);
 
-        if (fromUser.getBank().getCurrency() == toUser.getBank().getCurrency() && fromUser.getBalance() >= totalAmount && fromUser.getBank().getLimitOfWithdrawal() >= totalAmount) {
+        if (fromUser.getBank().getCurrency() == toUser.getBank().getCurrency() && fromUser.getBalance() >= totalAmount && fromUser.getBank/**/().getLimitOfWithdrawal() >= totalAmount) {
             if (toUser.getBank().getLimitOfFunding() >= amount) {
                 fromUser.setBalance(fromUser.getBalance() - totalAmount);
                 toUser.setBalance(toUser.getBalance() + amount);

@@ -4,9 +4,9 @@ package jdbc.lesson3.hw.task3;
 import java.sql.*;
 
 public class Solution {
-    private static final String DB_URL = "jdbc:oracle:thin:@gromcode-lessons.cnrx1jkycv8d.us-east-2.rds.amazonaws.com:1521:ORCL";
-    private static final String USER = "main";
-    private static final String PASS = "asol1998";
+    private static final String DB_URL = "";
+    private static final String USER = "";
+    private static final String PASS = "";
 
 
     public long testSavePerformance() throws SQLException {//159337
