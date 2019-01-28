@@ -6,9 +6,9 @@ import jdbc.lesson4.hw.exception.BadRequestException;
 import java.sql.*;
 
 public abstract class GenericDAO<T> {
-    private static final String DB_URL = "jdbc:oracle:thin:@gromcode-lessons.cnrx1jkycv8d.us-east-2.rds.amazonaws.com:1521:ORCL";
-    private static final String USER = "main";
-    private static final String PASS = "asol1998";
+    private static final String DB_URL = "";
+    private static final String USER = "";
+    private static final String PASS = "";
 
 
     public static Connection getConnection() throws SQLException {
