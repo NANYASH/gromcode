@@ -10,9 +10,9 @@ import java.util.List;
 
 public class TransactionDemo {
 
-    private static final String DB_URL = "jdbc:oracle:thin:@gromcode-lessons.cnrx1jkycv8d.us-east-2.rds.amazonaws.com:1521:ORCL";
-    private static final String USER = "main";
-    private static final String PASS = "asol1998";
+    private static final String DB_URL = "";
+    private static final String USER = "";
+    private static final String PASS = "";
     private static final String CREATE_PRODUCT = "INSERT INTO PRODUCT VALUES(?, ?, ?, ?)";
 
     public static void main(String[] args) throws SQLException {
